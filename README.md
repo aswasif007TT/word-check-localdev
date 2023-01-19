@@ -1,4 +1,4 @@
-# Localdev
+# Word Check Localdev
 
 This repository is the local development orchestrator. It has two purposes:
 
@@ -14,8 +14,10 @@ This repository is the local development orchestrator. It has two purposes:
 ## Setup
 
 1. Run `./setup.sh` which will pull all the repositories
-2. Run `docker compose up app api`
+2. Run `docker compose up app api`.
+3. Frontend React app should run on http://localhost:8080/
+4. Backend NestJS API should run on http://localhost:8081/
 
-## Test Production Build
+## Production Build
 
-You can test production build using the following commands: `docker compose up app-nginx api-nginx`
+You can test production builds using the following commands: `docker compose up app-nginx api-nginx`. The nginx servers for frontend and backend production builds should run on http://localhost:9090/ and http://localhost:9091/ respectively.
