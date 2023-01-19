@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+  app:
+    container_name: word-check-fe
+    image: word-check-fe
+    volumes:
+      - ../word-check-fe:/app
+      - /app/node_modules
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
+    ports:
+      - "8080:8080"
+    build:
+      context: ../word-check-fe
+  
+  api:
+    container_name: word-check-be
+    image: word-check-be
+    volumes:
+      - ../word-check-be:/app
+      - /app/node_modules
+    environment:
+      - PORT=8081
+    ports:
+      - "8081:8081"
+    build:
+      context: ../word-check-be
+
+  app-nginx:
+    container_name: word-check-fe-nginx
+    image: word-check-fe-nginx
+    ports:
+      - "9090:80"
+    build:
+      context: ../word-check-fe
+      dockerfile: ./nginx/Dockerfile
+
+  api-nginx:
+    container_name: word-check-be-nginx
+    image: "word-check-be-nginx"
+    ports:
+      - "9091:80"
+    depends_on:
+      - api-server-1
+    build:
+      context: ../word-check-be/nginx
+
+  api-server-1:
+    container_name: word-check-be-server-1
+    image: word-check-be-server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    build:
+      context: ../word-check-be
+      dockerfile: ./nginx/Dockerfile.build
