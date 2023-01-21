@@ -2,10 +2,10 @@
 
 This repository is the local development orchestrator. It has two purposes:
 
-- Outline the system requirements for running the microservices
+- Outline the requirements for running the microservices
 - Allow the developers to be able to run the project with minimal knowledge
 
-## System Requirements
+## Requirements
 
 - Docker v20
 - Docker Compose v2
